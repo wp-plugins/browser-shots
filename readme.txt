@@ -27,7 +27,7 @@ The *Browser Shots* plugin is compatibly with WordPress Multisite, just use the 
 == Screenshots ==
 
 1. A view from inside of the WordPress TinyMCE editor
-2. The formatted front-end view of generated screenshots
+2. The formatted front-end view of generated screenshots. [See a live example](http://www.kevinleary.net/great-examples-software-web-design/)
 
 == Changelog ==
 
