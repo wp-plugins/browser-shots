@@ -2,9 +2,9 @@
 /*
 Plugin Name: Browser Shots
 Plugin URI: http://wordpress.org/#
-Description: Easily take dynamic screenshots of a website
-Author: Kevin Leary, Ben Gillbanks
-Version: 1.0
+Description: Easily take dynamic screenshots of a website inside of WordPress
+Author: Kevin Leary
+Version: 1.1
 Author URI: http://www.kevinleary.net
 */
 
@@ -40,6 +40,7 @@ class BrowserShots
 		extract( shortcode_atts( array(
 			'url' => '',
 			'width' => 600,
+			'height' => 450,
 			'alt' => ''
 		), $attributes ) );
 		
@@ -52,7 +53,7 @@ class BrowserShots
 		$image_uri = $this->get_shot( $url, $width );
 	
 		if ( !empty( $image_uri ) ) {
-			$image = '<img src="' . $image_uri . '" alt="' . $alt . '" width="' . $width . '" class="alignnone" />';
+			$image = '<img src="' . $image_uri . '" alt="' . $alt . '" width="' . $width . '" height="' . $height . '" class="alignnone" />';
 			return '<div class="browser-shot"><a href="' . $url . '">' . $image . '</a></div>';
 		}
 		
@@ -69,7 +70,7 @@ class BrowserShots
 		
 		// Image found
 		if ( $url != '' ) {
-			return 'http://s.wordpress.com/mshots/v1/' . urlencode( $url ) . '?w=' . $width;
+			return 'http://s.wordpress.com/mshots/v1/' . urlencode( $url ) . '?w=' . $width . '&h=' . $height;
 		} 
 		
 		// No image

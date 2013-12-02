@@ -16,15 +16,16 @@
 					
 					if ( website != null && website != '' ) {
 						
-						// Width and website set
+						// Build shortcode
+						var shortcode = '[browser-shot url="' + website + '"';
 						if ( width != null && width != '' ) {
-							var shortcode = '[browser-shot width="' + width + '" url="' + website + '"]';
-							ed.execCommand( 'mceInsertContent', false, shortcode );
+							shortcode += ' width="' + width + '"';
 						}
-						else {
-							var shortcode = '[browser-shot url="' + website + '"]';
-							ed.execCommand( 'mceInsertContent', false, shortcode );
+						elseif ( height != null && height != '' ) {
+							shortcode += ' height="' + height + '"';
 						}
+						var shortcode = ']';
+						ed.execCommand( 'mceInsertContent', false, shortcode );
 					}
 				}
 			});
@@ -38,7 +39,7 @@
 				author: 'Kevin Leary',
 				authorurl: 'http://www.kevinleary.net',
 				infourl: 'http://wordpress.org/extend/plugins/browser-shots/',
-				version: "1.0"
+				version: "1.2"
 			};
 		}
 	});
