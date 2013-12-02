@@ -11,17 +11,17 @@
 				onclick: function() {
 				
 					// Dialog prompt's
-					var width = prompt("How wide should the screenshot be?", "600");
+					var width = prompt("Screenshot width:", "600");
+					var height = prompt("Screenshot height:", "450");
 					var website = prompt("What's the URL of the website?", "http://www.kevinleary.net");
 					
+					// Build shortcode tag
 					if ( website != null && website != '' ) {
-						
-						// Build shortcode
 						var shortcode = '[browser-shot url="' + website + '"';
 						if ( width != null && width != '' ) {
 							shortcode += ' width="' + width + '"';
 						}
-						elseif ( height != null && height != '' ) {
+						else if ( height != null && height != '' ) {
 							shortcode += ' height="' + height + '"';
 						}
 						var shortcode = ']';
