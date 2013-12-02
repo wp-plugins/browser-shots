@@ -3,7 +3,7 @@
 Plugin Name: Browser Shots
 Plugin URI: http://wordpress.org/#
 Description: Easily take dynamic screenshots of a website
-Author: Kevin Leary, Ben Gillbanks
+Author: Kevin Leary
 Version: 1.0
 Author URI: http://www.kevinleary.net
 */
