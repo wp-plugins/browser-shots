@@ -2,7 +2,7 @@
 Contributors: kevinlearynet, BinaryMoon
 Tags: screenshot, browser, browser shot, generator, tool, automatic, shortcode, automate, screenshots, shots, web browser, window, snap, website, website screenshot, website preview
 Requires at least: 3.3.0
-Tested up to: 3.4.2
+Tested up to: 3.7.1
 Stable tag: 1.0
 
 Automate the process of taking website screenshots.
@@ -30,6 +30,10 @@ The *Browser Shots* plugin is compatibly with WordPress Multisite, just use the 
 2. The formatted front-end view of generated screenshots. [See a live example](http://www.kevinleary.net/great-examples-software-web-design/)
 
 == Changelog ==
+
+= 1.1 =
+* Add 'height' attribute to the TinyMCE prompts
+* Allow users to override 'height' attribute in [browser-shot] shortcode
 
 = 1.0 =
 * Initial public release to the WordPress plugin repository
