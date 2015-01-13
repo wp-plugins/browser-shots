@@ -1,17 +1,18 @@
 <?php
 /*
 Plugin Name: Browser Shots
-Plugin URI: http://wordpress.org/#
+Plugin URI: https://wordpress.org/plugins/browser-shots/
 Description: Easily take dynamic screenshots of a website inside of WordPress
 Author: Kevin Leary
-Version: 1.1
+Version: 1.2
 Author URI: http://www.kevinleary.net
 */
 
-if ( !class_exists( 'BrowserShots' ) ):
+
+if ( ! class_exists( 'BrowserShots' ) ) {
 
 class BrowserShots {
-	
+
 	/**
 	 * Setup the object
 	 *
@@ -34,25 +35,57 @@ class BrowserShots {
 	 * Create a shortcode: [browser-shot url="http://link-to-website" width="600"]
 	 */
 	public function shortcode( $attributes, $content = '', $code = '' ) {
+
 		// Get attributes as parameters
 		extract( shortcode_atts( array(
 			'url' => '',
 			'width' => 600,
 			'height' => 450,
-			'alt' => ''
+			'alt' => '',
+			'link' => '',
+			'target' => '',
 		), $attributes ) );
 
 		// Sanitize
 		$width = intval( $width );
+		$height = intval( $height );
 		$url = esc_url( $url );
+		$link = esc_url( $link );
 		$alt = ( empty( $alt ) ) ? $url : esc_attr( $alt );
+		$target = esc_attr( $target );
+		$caption = esc_html( $content );
+
+		if ( empty( $link ) ) {
+			$link = $url;
+		}
+
+		if ( $target ) {
+			$target = ' target="' . $target . '"';
+		}
 
 		// Get screenshot
-		$image_uri = $this->get_shot( $url, $width );
+		$image_uri = $this->get_shot( $url, $width, $height );
 
 		if ( !empty( $image_uri ) ) {
-			$image = '<img src="' . $image_uri . '" alt="' . $alt . '" width="' . $width . '" height="' . $height . '" class="alignnone" />';
-			return '<div class="browser-shot"><a href="' . $url . '">' . $image . '</a></div>';
+
+			ob_start();
+
+			if ( $caption ) {
+				echo '<div class="wp-caption" style="width:' . ($width + 10) . 'px;">';
+			}
+?>
+	<div class="browser-shot">
+		<a href="<?php echo $link; ?>" <?php echo $target; ?>>
+			<img src="<?php echo $image_uri; ?>" alt="<?php echo $alt; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="alignnone" />
+		</a>
+	</div>
+<?php
+
+			if ( $caption ) {
+				echo '<p class="wp-caption-text">' . $caption . '</p>';
+				echo '</div>';
+			}
+			return ob_get_clean();
 		}
 
 		return '';
@@ -64,7 +97,7 @@ class BrowserShots {
 	 *
 	 * Get a screenshot of a website using WordPress
 	 */
-	public function get_shot( $url = '', $width = 250 ) {
+	public function get_shot( $url = '', $width = 600, $height = 450 ) {
 
 		// Image found
 		if ( $url != '' ) {
@@ -116,4 +149,4 @@ class BrowserShots {
 
 new BrowserShots();
 
-endif; // class_exists
+} // class_exists

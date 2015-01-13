@@ -1,9 +1,9 @@
 === Browser Shots ===
-Contributors: kevinlearynet, BinaryMoon
+Contributors: BinaryMoon, kevinlearynet
 Tags: screenshot, browser, browser shot, generator, tool, automatic, shortcode, automate, screenshots, shots, web browser, window, snap, website, website screenshot, website preview
-Requires at least: 3.3.0
-Tested up to: 3.7.1
-Stable tag: 1.0
+Requires at least: 3.6
+Tested up to: 4.1
+Stable tag: 1.2
 
 Automate the process of taking website screenshots.
 
@@ -13,7 +13,23 @@ Use the `[browser-shot]` shortcode to automate the process of taking website scr
 
 = Shortcode Preview =
 
-`[browser-shot url="http://link-to-website" width="600"]`
+`// basic shot 600px wide
+[browser-shot url="http://link-to-website" width="600"]
+
+// shot with link to other website
+[browser-shot url="http://link-to-website" width="700" link="http://www.binarymoon.co.uk/"]
+
+// shot with caption (uses default WordPress caption styles)
+[browser-shot url="http://link-to-website" width="700"]Add Caption[/browser-shot]`
+
+= Available Parameters =
+
+* url (required) - the url of the link to shorten
+* width - the width of the image
+* height - the height of the image
+* alt - the image alt text
+* link - where the image links. Left blank it will point to the website where the screenshot is being taken
+* target - browser target. Set to _blank to open in a new window
 
 = Multisite Compatibility =
 
@@ -21,7 +37,7 @@ The *Browser Shots* plugin is compatibly with WordPress Multisite, just use the 
 
 == Installation ==
 
-1. Install easily with the WordPress plugin control panel or manually download the plugin and upload the folder `browser-shots` to the `/wp-content/plugins/` directory 
+1. Install easily with the WordPress plugin control panel or manually download the plugin and upload the folder `browser-shots` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Screenshots ==
@@ -30,6 +46,12 @@ The *Browser Shots* plugin is compatibly with WordPress Multisite, just use the 
 2. The formatted front-end view of generated screenshots. [See a live example](http://www.kevinleary.net/great-examples-software-web-design/)
 
 == Changelog ==
+
+= 1.2 =
+* Add 'link' attribute. Allows you to change the url that the screenshot links to
+* Sanitize the height attribute and fix a small height related PHP error
+* Add support for captions
+* Add target attribute for opening links in new windows
 
 = 1.1 =
 * Add 'height' attribute to the TinyMCE prompts
