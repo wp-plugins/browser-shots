@@ -4,12 +4,12 @@ Plugin Name: Browser Shots
 Plugin URI: https://wordpress.org/plugins/browser-shots/
 Description: Easily take dynamic screenshots of a website inside of WordPress
 Author: Kevin Leary
-Version: 1.2
-Author URI: http://www.kevinleary.net
+Version: 1.3
+Author URI: http://prothemedesign.com
 */
 
 
-if ( ! class_exists( 'BrowserShots' ) ) {
+if ( !class_exists( 'BrowserShots' ) ) {
 
 class BrowserShots {
 
@@ -125,7 +125,7 @@ class BrowserShots {
 	 * Register TinyMCE Plugin
 	 */
 	public function add_plugin( $plugin_array ) {
-		$plugin_array['browsershots'] = plugins_url( 'js/browser-shots.min.js' , __FILE__ );
+		$plugin_array['browsershots'] = plugins_url( 'js/browser-shots.js' , __FILE__ );
 
 		return $plugin_array;
 	}

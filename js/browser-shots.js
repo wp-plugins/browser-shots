@@ -1,32 +1,83 @@
 /**
- * TinyMCE Integration
+ * Browser Shots TinyMCE Integration
  */
- 
-(function() {
-	tinymce.create('tinymce.plugins.browsershots', {
-		init: function(ed, url) {
-			ed.addButton('browsershots', {
+
+;(function() {
+	var properties = [];
+
+	properties.push(
+		{
+			'type': 'textbox',
+			'name': 'url',
+			'label': 'Image Url',
+			'value': 'http://prothemedesign.com/',
+			'size': 40
+		},
+		{
+			'type': 'textbox',
+			'name': 'width',
+			'label': 'Image Width',
+			'value': '600',
+			'size': 10
+		},
+		{
+			'type': 'textbox',
+			'name': 'height',
+			'label': 'Image Height',
+			'value': '450',
+			'size': 10
+		},
+		{
+			'type': 'textbox',
+			'name': 'link_url',
+			'label': 'Link Url',
+			'value': '',
+			'size': 40
+		}
+
+	);
+
+	var shortcode_name = 'browser-shot';
+
+	tinymce.create( 'tinymce.plugins.browsershots', {
+		init: function(editor, url) {
+			editor.addButton('browsershots', {
 				title: 'Browser Shots',
 				image: url.replace('/js', '/images') + '/browsershots-icon.png',
 				onclick: function() {
-				
-					// Dialog prompt's
-					var width = prompt("Screenshot width:", "600");
-					var height = prompt("Screenshot height:", "450");
-					var website = prompt("What's the URL of the website?", "http://www.kevinleary.net");
-					
-					// Build shortcode tag
-					if ( website != null && website != '' ) {
-						var shortcode = '[browser-shot url="' + website + '"';
-						if ( width != null && width != '' ) {
-							shortcode += ' width="' + width + '"';
-						}
-						else if ( height != null && height != '' ) {
-							shortcode += ' height="' + height + '"';
-						}
-						var shortcode = ']';
-						ed.execCommand( 'mceInsertContent', false, shortcode );
-					}
+
+					editor.windowManager.open({
+                        title: 'Browser Shots',
+                        body: properties,
+                        onsubmit: function (e) {
+
+							// Dialog prompt's
+							var width = e.data.width;
+							var height = e.data.height;
+							var website = e.data.url;
+
+							// Build shortcode tag
+							if ( website != null && website != '' ) {
+								var shortcode = '[' + shortcode_name + ' url="' + website + '"';
+								if ( width != null && width != '' ) {
+									shortcode += ' width="' + width + '"';
+								} else if ( height != null && height != '' ) {
+									shortcode += ' height="' + height + '"';
+								}
+								shortcode += ']';
+
+								var selection = editor.selection.getContent();
+								if ( selection.length ) {
+									var code = shortcode + selection + '[/' + shortcode_name + ']';
+									editor.selection.setContent( code );
+								} else {
+									editor.insertContent( shortcode );
+								}
+							}
+
+                        }
+                    });
+
 				}
 			});
 		},
@@ -35,13 +86,15 @@
 		},
 		getInfo: function() {
 			return {
-				longname: "Browser Shots",
-				author: 'Kevin Leary',
-				authorurl: 'http://www.kevinleary.net',
+				longname: 'Browser Shots',
+				author: 'Ben Gillbanks',
+				authorurl: 'http://prothemedesign.com',
 				infourl: 'http://wordpress.org/extend/plugins/browser-shots/',
-				version: "1.2"
+				version: '1.3'
 			};
 		}
 	});
-	tinymce.PluginManager.add('browsershots', tinymce.plugins.browsershots);
+
+	tinymce.PluginManager.add( 'browsershots', tinymce.plugins.browsershots );
+
 })();
