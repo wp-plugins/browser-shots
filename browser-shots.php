@@ -4,7 +4,7 @@ Plugin Name: Browser Shots
 Plugin URI: https://wordpress.org/plugins/browser-shots/
 Description: Easily take dynamic screenshots of a website inside of WordPress
 Author: Kevin Leary
-Version: 1.3
+Version: 1.3.1
 Author URI: http://prothemedesign.com
 */
 

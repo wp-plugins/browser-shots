@@ -4,13 +4,22 @@
 
 ;(function() {
 	var properties = [];
+	var shortcode_name = 'browser-shot';
+	var selection = '';
 
 	properties.push(
 		{
 			'type': 'textbox',
 			'name': 'url',
 			'label': 'Image Url',
-			'value': 'http://prothemedesign.com/',
+			'value': 'http://',
+			'size': 40
+		},
+		{
+			'type': 'textbox',
+			'name': 'href',
+			'label': 'Image Link Url (optional)',
+			'value': '',
 			'size': 40
 		},
 		{
@@ -29,15 +38,24 @@
 		},
 		{
 			'type': 'textbox',
-			'name': 'link_url',
-			'label': 'Link Url',
+			'name': 'caption',
+			'label': 'Image Caption',
 			'value': '',
 			'size': 40
+		},
+		{
+			'type': 'textbox',
+			'name': 'alt',
+			'label': 'Image ALT text',
+			'value': '',
+			'size': 40
+		},
+		{
+			'type': 'checkbox',
+			'name': 'target',
+			'label': 'Open Link in new Window?',
 		}
-
 	);
-
-	var shortcode_name = 'browser-shot';
 
 	tinymce.create( 'tinymce.plugins.browsershots', {
 		init: function(editor, url) {
@@ -45,6 +63,10 @@
 				title: 'Browser Shots',
 				image: url.replace('/js', '/images') + '/browsershots-icon.png',
 				onclick: function() {
+
+					selection = editor.selection.getContent();
+
+					properties[4].value = selection;
 
 					editor.windowManager.open({
                         title: 'Browser Shots',
@@ -55,20 +77,37 @@
 							var width = e.data.width;
 							var height = e.data.height;
 							var website = e.data.url;
+							var link = e.data.href;
+							var caption = e.data.caption;
+							var alt = e.data.alt;
+							var target = e.data.target;
 
 							// Build shortcode tag
 							if ( website != null && website != '' ) {
 								var shortcode = '[' + shortcode_name + ' url="' + website + '"';
 								if ( width != null && width != '' ) {
 									shortcode += ' width="' + width + '"';
-								} else if ( height != null && height != '' ) {
+								}
+								if ( height != null && height != '' ) {
 									shortcode += ' height="' + height + '"';
 								}
+								if ( link != null && link != '' ) {
+									shortcode += ' href="' + link + '"';
+								}
+								if ( alt != null && alt != '' ) {
+									shortcode += ' alt="' + link + '"';
+								}
+								if ( true == target ) {
+									shortcode += ' target="_blank"';
+								}
+
 								shortcode += ']';
 
-								var selection = editor.selection.getContent();
+								if ( caption != null && caption != '' ) {
+									shortcode += caption + '[/' + shortcode_name + ']';
+								}
+
 								if ( selection.length ) {
-									var code = shortcode + selection + '[/' + shortcode_name + ']';
 									editor.selection.setContent( code );
 								} else {
 									editor.insertContent( shortcode );
@@ -81,7 +120,7 @@
 				}
 			});
 		},
-		createControl: function(n, cm) {
+		createControl: function() {
 			return null;
 		},
 		getInfo: function() {
@@ -90,7 +129,7 @@
 				author: 'Ben Gillbanks',
 				authorurl: 'http://prothemedesign.com',
 				infourl: 'http://wordpress.org/extend/plugins/browser-shots/',
-				version: '1.3'
+				version: '1.3.1'
 			};
 		}
 	});
