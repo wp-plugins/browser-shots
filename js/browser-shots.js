@@ -95,7 +95,7 @@
 									shortcode += ' href="' + link + '"';
 								}
 								if ( alt != null && alt != '' ) {
-									shortcode += ' alt="' + link + '"';
+									shortcode += ' alt="' + alt + '"';
 								}
 								if ( true == target ) {
 									shortcode += ' target="_blank"';
@@ -108,7 +108,7 @@
 								}
 
 								if ( selection.length ) {
-									editor.selection.setContent( code );
+									editor.selection.setContent( shortcode );
 								} else {
 									editor.insertContent( shortcode );
 								}
