@@ -47,6 +47,9 @@ The *Browser Shots* plugin is compatibly with WordPress Multisite, just use the 
 
 == Changelog ==
 
+= 1.3.2 =
+* Fix a couple of small javascript bugs (thanks again to Ciprian Dracea)
+
 = 1.3.1 =
 * Fix a couple of small bugs with the visual editor and add support for all shortcode parameters
 
