@@ -35,6 +35,11 @@ class BrowserShots {
 	 * [browser-shot] Shortcode
 	 *
 	 * Create a shortcode: [browser-shot url="http://link-to-website" width="600"]
+	 *
+	 * @param type $attributes
+	 * @param type $content
+	 * @param type $code
+	 * @return string
 	 */
 	public function shortcode( $attributes, $content = '', $code = '' ) {
 
@@ -68,12 +73,12 @@ class BrowserShots {
 		// Get screenshot
 		$image_uri = $this->get_shot( $url, $width, $height );
 
-		if ( !empty( $image_uri ) ) {
+		if ( ! empty( $image_uri ) ) {
 
 			ob_start();
 
 			if ( $caption ) {
-				echo '<div class="wp-caption" style="width:' . ($width + 10) . 'px;">';
+				echo '<div class="wp-caption" style="width:' . ( $width + 10 ) . 'px;">';
 			}
 ?>
 	<div class="browser-shot">
@@ -101,6 +106,11 @@ class BrowserShots {
 	 * Get Browser Screenshot
 	 *
 	 * Get a screenshot of a website using WordPress
+	 *
+	 * @param type $url
+	 * @param type $width
+	 * @param type $height
+	 * @return string
 	 */
 	public function get_shot( $url = '', $width = 600, $height = 450 ) {
 
@@ -126,10 +136,13 @@ class BrowserShots {
 
 	/**
 	 * Register TinyMCE Button
+	 *
+	 * @param type $buttons
+	 * @return type
 	 */
 	public function register_button( $buttons ) {
 
-		array_push( $buttons, "|", "browsershots" );
+		array_push( $buttons, '|', "browsershots" );
 
 		return $buttons;
 
@@ -138,10 +151,13 @@ class BrowserShots {
 
 	/**
 	 * Register TinyMCE Plugin
+	 *
+	 * @param array $plugin_array
+	 * @return type
 	 */
 	public function add_plugin( $plugin_array ) {
 
-		$plugin_array['browsershots'] = plugins_url( 'js/browser-shots.js' , __FILE__ );
+		$plugin_array[ 'browsershots' ] = plugins_url( 'js/browser-shots.js' , __FILE__ );
 
 		return $plugin_array;
 
@@ -150,6 +166,8 @@ class BrowserShots {
 
 	/**
 	 * Create TinyMCE Button
+	 *
+	 * @return type
 	 */
 	public function tinymce_button() {
 
