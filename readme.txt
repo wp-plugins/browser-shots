@@ -2,8 +2,8 @@
 Contributors: BinaryMoon, kevinlearynet
 Tags: screenshot, browser, browser shot, generator, tool, automatic, shortcode, automate, screenshots, shots, web browser, window, snap, website, website screenshot, website preview
 Requires at least: 3.6
-Tested up to: 4.2
-Stable tag: 1.4
+Tested up to: 4.4
+Stable tag: 1.5
 
 Automate the process of taking website screenshots.
 
@@ -46,6 +46,9 @@ The *Browser Shots* plugin is compatibly with WordPress Multisite, just use the 
 2. The formatted front-end view of generated screenshots. [See a live example](http://www.kevinleary.net/great-examples-software-web-design/)
 
 == Changelog ==
+
+= 1.5 =
+* update localisation strings so that things can be translated more easily
 
 = 1.4 =
 * Update the website screen capture path. This ensures the code will work properly on secure domains

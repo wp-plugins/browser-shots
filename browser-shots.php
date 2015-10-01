@@ -1,13 +1,29 @@
 <?php
 /*
-Plugin Name: Browser Shots
-Plugin URI: https://wordpress.org/plugins/browser-shots/
-Description: Easily take dynamic screenshots of a website inside of WordPress
-Author: Kevin Leary
-Version: 1.4
-Author URI: http://prothemedesign.com
+	Plugin Name: Browser Shots
+	Plugin URI: https://wordpress.org/plugins/browser-shots/
+	Description: Easily take dynamic screenshots of a website inside of WordPress
+	Author: Kevin Leary
+	Version: 1.5
+	Author URI: http://prothemedesign.com
+	Text Domain: browser-shots
 */
 
+/*
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
 
 if ( !class_exists( 'BrowserShots' ) ) {
 
@@ -44,14 +60,19 @@ class BrowserShots {
 	public function shortcode( $attributes, $content = '', $code = '' ) {
 
 		// Get attributes as parameters
-		extract( shortcode_atts( array(
-			'url' => '',
-			'width' => 600,
-			'height' => 450,
-			'alt' => '',
-			'link' => '',
-			'target' => '',
-		), $attributes ) );
+		extract(
+			shortcode_atts(
+				array(
+					'url' => '',
+					'width' => 600,
+					'height' => 450,
+					'alt' => '',
+					'link' => '',
+					'target' => '',
+				),
+				$attributes
+			)
+		);
 
 		// Sanitize
 		$width = intval( $width );
@@ -63,17 +84,21 @@ class BrowserShots {
 		$caption = esc_html( $content );
 
 		if ( empty( $link ) ) {
+
 			$link = $url;
+
 		}
 
 		if ( $target ) {
+
 			$target = ' target="' . $target . '"';
+
 		}
 
 		// Get screenshot
 		$image_uri = $this->get_shot( $url, $width, $height );
 
-		if ( ! empty( $image_uri ) ) {
+		if ( !empty( $image_uri ) ) {
 
 			ob_start();
 
@@ -142,7 +167,7 @@ class BrowserShots {
 	 */
 	public function register_button( $buttons ) {
 
-		array_push( $buttons, '|', "browsershots" );
+		array_push( $buttons, '|', 'browsershots' );
 
 		return $buttons;
 
@@ -152,22 +177,35 @@ class BrowserShots {
 	/**
 	 * Register TinyMCE Plugin
 	 *
-	 * @param array $plugin_array
+	 * @param array $plugins
 	 * @return type
 	 */
-	public function add_plugin( $plugin_array ) {
+	public function add_plugin( $plugins ) {
 
-		$plugin_array[ 'browsershots' ] = plugins_url( 'js/browser-shots.js' , __FILE__ );
+		$plugins[ 'browsershots' ] = plugins_url( 'js/browser-shots.js' , __FILE__ );
 
-		return $plugin_array;
+		return $plugins;
+
+	}
+
+
+	/**
+	 * Add translations to TinyMCE button
+	 *
+	 * @param array $locales
+	 * @return string
+	 */
+	public function button_locale( $locales ) {
+
+		$locales[ 'browsershots' ] = plugin_dir_path ( __FILE__ ) . 'locale.php';
+
+		return $locales;
 
 	}
 
 
 	/**
 	 * Create TinyMCE Button
-	 *
-	 * @return type
 	 */
 	public function tinymce_button() {
 
@@ -182,6 +220,7 @@ class BrowserShots {
 
 			add_filter( 'mce_external_plugins', array( $this, 'add_plugin' ) );
 			add_filter( 'mce_buttons', array( $this, 'register_button' ) );
+			add_filter( 'mce_external_languages', array( $this, 'button_locale' ) );
 
 		}
 

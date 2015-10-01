@@ -7,58 +7,59 @@
 	var shortcode_name = 'browser-shot';
 	var selection = '';
 
-	properties.push(
-		{
-			'type': 'textbox',
-			'name': 'url',
-			'label': 'Image Url',
-			'value': 'http://',
-			'size': 40
-		},
-		{
-			'type': 'textbox',
-			'name': 'href',
-			'label': 'Image Link Url (optional)',
-			'value': '',
-			'size': 40
-		},
-		{
-			'type': 'textbox',
-			'name': 'width',
-			'label': 'Image Width',
-			'value': '600',
-			'size': 10
-		},
-		{
-			'type': 'textbox',
-			'name': 'height',
-			'label': 'Image Height',
-			'value': '450',
-			'size': 10
-		},
-		{
-			'type': 'textbox',
-			'name': 'caption',
-			'label': 'Image Caption',
-			'value': '',
-			'size': 40
-		},
-		{
-			'type': 'textbox',
-			'name': 'alt',
-			'label': 'Image ALT text',
-			'value': '',
-			'size': 40
-		},
-		{
-			'type': 'checkbox',
-			'name': 'target',
-			'label': 'Open Link in new Window?',
-		}
-	);
-
 	tinymce.create( 'tinymce.plugins.browsershots', {
 		init: function(editor, url) {
+
+			properties.push(
+				{
+					'type': 'textbox',
+					'name': 'url',
+					'label': editor.getLang( 'browsershots.image_url' ),
+					'value': 'http://',
+					'size': 40
+				},
+				{
+					'type': 'textbox',
+					'name': 'href',
+					'label': editor.getLang( 'browsershots.image_link_url' ),
+					'value': '',
+					'size': 40
+				},
+				{
+					'type': 'textbox',
+					'name': 'width',
+					'label': editor.getLang( 'browsershots.image_width' ),
+					'value': '600',
+					'size': 10
+				},
+				{
+					'type': 'textbox',
+					'name': 'height',
+					'label': editor.getLang( 'browsershots.image_height' ),
+					'value': '450',
+					'size': 10
+				},
+				{
+					'type': 'textbox',
+					'name': 'caption',
+					'label': editor.getLang( 'browsershots.image_caption' ),
+					'value': '',
+					'size': 40
+				},
+				{
+					'type': 'textbox',
+					'name': 'alt',
+					'label': editor.getLang( 'browsershots.image_alt_text' ),
+					'value': '',
+					'size': 40
+				},
+				{
+					'type': 'checkbox',
+					'name': 'target',
+					'label': editor.getLang( 'browsershots.new_window' )
+				}
+			);
+
 			editor.addButton('browsershots', {
 				title: 'Browser Shots',
 				image: url.replace('/js', '/images') + '/browsershots-icon.png',
