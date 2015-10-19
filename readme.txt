@@ -3,7 +3,7 @@ Contributors: BinaryMoon, kevinlearynet
 Tags: screenshot, browser, browser shot, generator, tool, automatic, shortcode, automate, screenshots, shots, web browser, window, snap, website, website screenshot, website preview
 Requires at least: 3.6
 Tested up to: 4.4
-Stable tag: 1.5
+Stable tag: 1.5.1
 
 Automate the process of taking website screenshots.
 
@@ -30,6 +30,8 @@ Use the `[browser-shot]` shortcode to automate the process of taking website scr
 * alt - the image alt text
 * link - where the image links. Left blank it will point to the website where the screenshot is being taken
 * target - browser target. Set to _blank to open in a new window
+* class - add a class to the browsershots wrapper
+* image_class - change the default browsershots image class from alignnone to your chosen class
 
 = Multisite Compatibility =
 
@@ -46,6 +48,11 @@ The *Browser Shots* plugin is compatibly with WordPress Multisite, just use the 
 2. The formatted front-end view of generated screenshots. [See a live example](http://www.kevinleary.net/great-examples-software-web-design/)
 
 == Changelog ==
+
+= 1.5.1 =
+* add two new class properties. One for the container, one for the image
+* lots of code tidying, and refactoring. Simpler, faster, and more secure
+* new tinymce icon that fits the style of the editor much better :)
 
 = 1.5 =
 * update localisation strings so that things can be translated more easily

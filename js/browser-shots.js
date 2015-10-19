@@ -128,9 +128,9 @@
 			return {
 				longname: 'Browser Shots',
 				author: 'Ben Gillbanks',
-				authorurl: 'http://prothemedesign.com',
-				infourl: 'http://wordpress.org/extend/plugins/browser-shots/',
-				version: '1.3.1'
+				authorurl: 'https://prothemedesign.com',
+				infourl: 'https://wordpress.org/extend/plugins/browser-shots/',
+				version: '1.5.1'
 			};
 		}
 	});
